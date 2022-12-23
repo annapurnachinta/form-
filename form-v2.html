@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="form.css">
+<link rel="stylesheet" href="table.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+<form class="codehim-form" id="task-form">
+  <div class="form-title">
+  </div>
+  <div class="row_1">
+    <div class="col-1">
+      <label for="name"><i class="fa fa-user"></i> Enter Full Name</label>
+      <input type="text" id="name" class="cm-input" placeholder="Enter Full Name">
+    </div>
+    <div class="col-2">
+      <label for="policy_number"><i class="fa fa-user"></i> Policy Number</label>
+      <input id="policy_number" type="number" class="cm-input" placeholder="Enter Policy Number">
+    </div>
+    <div class="col-3">
+      <label for="policy_money"><i class="fa fa-inr"></i> Enter Amount</label>
+      <input id="policy_money" type="number" class="cm-input" placeholder="Enter Amount">
+    </div>
+  </div>
+  <div class="row_2">
+    <div class="col-4">
+      <label for="select_policy_name"><i class="fa fa-user"></i> Select Policy Name</label>
+      <select class="cm-input" id="select_policy_name">
+        <option value="">Select Insurance</option>
+        <option value="Health Insurance">Health Insurance</option>
+        <option value="Car Insurance">Car Insurance</option>
+        <option value="Home Insurance">Home Insurance</option>
+        <option value="Travel Insurance">Travel Insurance</option>
+      </select>
+    </div>
+    <div class="col-5">
+      <label for="select_Installment"><i class="fa fa-user"></i> Select Installment</label>
+      <select class="cm-input" id="select_Installment">
+        <option value="">Select Installment</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Yearly">Yearly</option>
+        <option value="Quartely">Quartely</option>
+      </select>
+    </div>
+    <div class="col-6"></div>
+  </div>
+  <button type="button" class="btn-login gr-bg" onclick="save()" value="Submit">Submit</button>
+</form>
+<section> 
+  <!--for demo wrap-->
+  <h1>Fixed Table header</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Policy Number</th>
+          <th>Policy Name</th>
+          <th>Installment</th>
+          <th>Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody id="tdata">
+      </tbody>
+    </table>
+  </div>
+</section>
+<script src="table.js"></script> 
+
+<!--	<script src="add.js"></script>--> 
+
+<script>
+	var formelm = document.getElementById("task-form");
+var formelements = formelm.elements;
+var formelementsArray = Array.from(formelements);
+var detailArray = [];
+var index = 0;
+var dummyArray = [];
+var updateid = "";
+
+function save(edit) {
+  var newArray = [];
+  var details = new Object();
+	var eleArry
+	if(edit!=null){
+		var editmelm = document.getElementById("row" + edit);
+var editelements = editmelm.elements;
+ eleArry = Array.from(editelements);
+	}else{
+		eleArry = formelementsArray
+	}
+  eleArry.forEach((elm) => {
+    if (elm.value == "" || elm.value == "undefined") {
+      elm.classList.add("is-invalid");
+    } else {
+      elm.classList.remove("is-invalid");
+
+      if (elm.id == "name") {
+        details.name = elm.value;
+      } else if (elm.id == "policy_number") {
+        if (details.name) {
+          details.policy_number = elm.value;
+        }
+      } else if (elm.id == "policy_money") {
+        if (details.policy_number) {
+          details.policy_money = elm.value;
+        }
+      } else if ((elm.id == "select_policy_name")) {
+        if (details.policy_money) {
+          details.select_policy_name = elm.value;
+        }
+      } else if ((elm.id == "select_Installment")) {
+        if (details.select_policy_name) {
+          details.select_Installment = elm.value;
+        }
+      }
+    }
+  });
+  if (
+    details.name == undefined ||
+    details.policy_number == undefined ||
+    details.policy_money == undefined ||
+	  details.select_policy_name == undefined ||
+    details.select_Installment == undefined
+  ) {
+    details = new Object();
+  } else {
+    newArray.push(details);
+    detailArray.push(newArray);
+	  getData();
+  }
+
+  document.getElementById("task-form").reset();
+}
+		
+let getData = (edit) => {
+  var tdata = document.getElementById("tdata");
+	var current_array
+if(edit!=null){
+	index = index-1;
+	current_array = detailArray[edit]
+}else{
+	current_array = detailArray[index]
+}
+  current_array.forEach(function (value) {
+	  var tr;
+	  if(edit!=null){
+		    let d_nested = document.getElementById("row" + index);
+	  tdata.removeChild(d_nested)
+		   tr = `
+    <td><input type="text" id="edit-name" value=${value.name}></td>
+    <td> <input type="text" id="edit-policy_number" value=${value.policy_number}> </td>
+    <td> <input type="text" id="edit-select_policy_name" value=${value.select_policy_name}> </td>
+<td><input type="text" id="edit-select_Installment" value=${value.select_Installment}> </td>
+<td><input type="text" id="edit-policy_money" value=${value.policy_money}> </td>
+    <td> 
+      <a> <i class="fa fa-save text-primary" style="width:15px;color:blue;cursor:pointer;" onclick="return save(edit)" id=${edit}></i></a>
+    </td>
+    `;
+	  }else{
+    tr = `
+    <td>  ${value.name} </td>
+    <td>  ${value.policy_number} </td>
+    <td>  ${value.select_policy_name} </td>
+<td>  ${value.select_Installment} </td>
+<td>  ${value.policy_money} </td>
+    <td> 
+      <a> <i class="fa fa-edit text-primary" style="width:15px;color:blue;cursor:pointer;" onclick="return getData(index)" id=${index}></i></a>
+      <a> <i class="fa fa-trash text-danger" style="width:15px;color:red" onclick="return onDelete(this)" id=${index}></i></a>
+    </td>
+    `;
+		  
+	  }
+	
+    row = document.createElement("tr");
+    row.id = "row" + index;
+    row.innerHTML = tr;
+    tdata.appendChild(row);
+	  
+  });
+	index = index + 1;
+};
+		
+
+		function onDelete(del_id) {
+  var idx = del_id.id;
+  detailArray.splice(idx, 1);
+  commontask();
+}
+		function commontask() {
+  dummyArray = detailArray;
+  var node = document.getElementById("tdata");
+  node.querySelectorAll("*").forEach((n) => n.remove());
+  detailArray = [];
+  index = 0;
+  refreshe();
+}
+		
+		function refreshe() {
+  dummyArray.forEach((ele) => {
+    detailArray.push(ele);
+    getData();
+  });
+}
+	
+	
+	</script>
+</body>
+</html>
