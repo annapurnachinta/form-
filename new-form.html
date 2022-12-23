@@ -1,0 +1,349 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.codehim-form {
+	max-width: 650px;
+	min-height: 300px;
+	box-sizing: border-box;
+	background: rgba(255, 255, 255, 0.6);
+	box-shadow: 4px 2px 16px rgba(0, 0, 0, 0.4);
+	border-radius: 8px;
+	margin: 60px auto 0 auto;
+	padding: 25px;
+	color: #414141;
+}
+.row_1 {
+	display: flex;
+}
+.row_2 {
+	display: flex;
+}
+.col-1 {
+	padding-right: 20px;
+}
+.col-2 {
+	padding-right: 20px;
+}
+.col-4 {
+	padding-right: 20px;
+}
+.col-5 {
+	padding-right: 20px;
+}
+#select_Installment {
+	width: 185px;
+	color: #6F6D6D;
+}
+#select_policy_name {
+	width: 185px;
+	color: #6F6D6D;
+}
+.cm-input {
+	display: block;
+	box-sizing: border-box;
+	padding: 10px;
+	width: 100%;
+	margin: 14px auto;
+	border-radius: 20px;
+	border: 1px solid #ccc;
+}
+.cm-input:focus {
+	outline: 0;
+	border-color: #f9cb81;
+}
+.cm-input:invalid {
+border-color: #e41b17;
+}
+/* Login Button Design */
+.btn-login {
+	width: 20%;
+	padding: 10px;
+	border: 0;
+	color: #fff;
+	border-radius: 20px;
+	cursor: pointer;
+	justify-content: center;
+	display: flex;
+	margin: 0 auto;
+}
+.btn-login:focus {
+	outline: 0;
+}
+.btn-login:hover {
+	opacity: 0.8;
+	transition: .3s;
+}
+/* Gradient Background */
+.gr-bg {
+	background: rgb(252, 205, 128);
+	background: linear-gradient(90deg, rgba(252, 205, 128, 1) 0%, rgba(209, 122, 142, 1) 55%, rgba(220, 159, 174, 1) 100%);
+}
+/* For, tiele */
+.form-title {
+	padding: 12px;
+	text-align: center;
+	position: relative;
+}
+.form-title h2 {
+	color: #5c86e1;
+}
+.form-title .user-icon {
+	position: absolute;
+	font-size: 42px;
+	color: #fff;
+	width: 90px;
+	height: 90px;
+	line-height: 90px;
+	text-align: center;
+	border-radius: 45px;
+	top: -60px;
+	left: -45px;
+}
+h1 {
+	font-size: 30px;
+	color: #000;
+	text-transform: uppercase;
+	font-weight: 300;
+	text-align: center;
+	margin-bottom: 15px;
+}
+table {
+	width: 100%;
+	table-layout: fixed;
+}
+.tbl-content {
+	height: 200px;
+	overflow-x: auto;
+	margin-top: 0px;
+	border: 1px solid rgb(252, 205, 128);
+}
+th {
+	padding: 20px 15px;
+	text-align: left;
+	font-weight: 500;
+	font-size: 12px;
+	color: #000;
+	text-transform: uppercase;
+	border: 1px solid rgb(252, 205, 128);
+}
+td {
+	padding: 15px;
+	text-align: left;
+	vertical-align: middle;
+	font-weight: 300;
+	font-size: 12px;
+	color: #000;
+	border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+width: 6px;
+}
+::-webkit-scrollbar-track {
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+::-webkit-scrollbar-thumb {
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+
+<body>
+<form class="codehim-form" id="task-form">
+  <div class="form-title"> 
+    <!--    <div class="user-icon gr-bg"> <i class="fa fa-user"></i> </div>--> 
+    <!--    <h2>Form</h2>--> 
+  </div>
+  <div class="row_1">
+    <div class="col-1">
+      <label for="name"><i class="fa fa-user"></i> Enter Full Name</label>
+      <input type="text" id="name" class="cm-input" placeholder="Enter Full Name">
+    </div>
+    <div class="col-2">
+      <label for="policy_number"><i class="fa fa-user"></i> Policy Number</label>
+      <input id="policy_number" type="number" class="cm-input" placeholder="Enter Policy Number">
+    </div>
+    <div class="col-3">
+      <label for="policy_money"><i class="fa fa-inr"></i> Enter Amount</label>
+      <input id="policy_money" type="number" class="cm-input" placeholder="Enter Amount">
+    </div>
+  </div>
+  <div class="row_2">
+    <div class="col-4">
+      <label for="select_policy_name"><i class="fa fa-user"></i> Select Policy Name</label>
+      <select class="cm-input" id="select_policy_name">
+        <option value="">Select Insurance</option>
+        <option value="Health Insurance">Health Insurance</option>
+        <option value="Car Insurance">Car Insurance</option>
+        <option value="Home Insurance">Home Insurance</option>
+        <option value="Travel Insurance">Travel Insurance</option>
+      </select>
+    </div>
+    <div class="col-5">
+      <label for="select_Installment"><i class="fa fa-user"></i> Select Installment</label>
+      <select class="cm-input" id="select_Installment">
+        <option value="">Select Installment</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Yearly">Yearly</option>
+        <option value="Quartely">Quartely</option>
+      </select>
+    </div>
+    <div class="col-6"></div>
+  </div>
+  <button type="button" class="btn-login  gr-bg" onclick="save()" value="Submit">Submit</button>
+</form>
+<section> 
+  <!--for demo wrap-->
+  <h1>Details</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Policy Number</th>
+          <th>Policy Name</th>
+          <th>Installment</th>
+          <th>Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody id="tdata">
+      </tbody>
+    </table>
+  </div>
+</section>
+<script>
+	// '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
+$(window).on("load resize ", function() {
+  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+  $('.tbl-header').css({'padding-right':scrollWidth});
+}).resize();
+	</script> 
+
+<!--	<script src="add.js"></script>--> 
+
+<script>
+	var formelm = document.getElementById("task-form");
+var formelements = formelm.elements;
+var formelementsArray = Array.from(formelements);
+var detailArray = [];
+var index = 0;
+var dummyArray = [];
+var updateid = "";
+
+//console.log(formelm, formelementsArray)
+function save() {
+  var newArray = [];
+  var details = new Object();
+  formelementsArray.forEach((elm) => {
+//	  console.log(elm.id )
+    if (elm.value == "" || elm.value == "undefined") {
+      elm.classList.add("is-invalid");
+    } else {
+      elm.classList.remove("is-invalid");
+
+      if (elm.id == "name") {
+        details.name = elm.value;
+		  console.log(details.name)
+      } else if (elm.id == "policy_number") {
+        if (details.name) {
+          details.policy_number = elm.value;
+			console.log(details.policy_number)
+        }
+      } else if (elm.id == "policy_money") {
+        if (details.policy_number) {
+          details.policy_money = elm.value;
+			console.log(details.policy_money)
+        }
+      } else if ((elm.id == "select_policy_name")) {
+        if (details.policy_money) {
+          details.select_policy_name = elm.value;
+			console.log(details.select_policy_name)
+        }
+      } else if ((elm.id == "select_Installment")) {
+        if (details.select_policy_name) {
+          details.select_Installment = elm.value;
+			console.log(details.select_Installment)
+        }
+      }
+    }
+  });
+  if (
+    details.name == undefined ||
+    details.policy_number == undefined ||
+    details.policy_money == undefined ||
+	  details.select_policy_name == undefined ||
+    details.select_Installment == undefined
+  ) {
+    details = new Object();
+  } else {
+    newArray.push(details);
+    detailArray.push(newArray);
+    console.log(newArray)
+	  getData();
+  }
+
+  document.getElementById("task-form").reset();
+}
+		
+let getData = () => {
+  var tdata = document.getElementById("tdata");
+
+  detailArray[index].forEach(function (value) {
+    var tr = `
+    <td>  ${value.name} </td>
+    <td>  ${value.policy_number} </td>
+    
+    <td>  ${value.select_policy_name} </td>
+<td>  ${value.select_Installment} </td>
+<td>  ${value.policy_money} </td>
+    <td> 
+      <a> <i class="fa fa-edit text-primary" style="width:15px;color:blue;cursor:pointer;"></i></a>
+      <a> <i class="fa fa-trash text-danger" style="width:15px;color:red;cursor:pointer;" onclick="return onDelete(this)" id=${index}></i></a>
+    </td>
+    `;
+
+    row = document.createElement("tr");
+    row.id = "row" + index;
+    row.innerHTML = tr;
+    tdata.appendChild(row);
+  });
+	index = index + 1;
+};
+		
+		function onDelete(del_id) {
+  var idx = del_id.id;
+  detailArray.splice(idx, 1);
+  commontask();
+}
+		function commontask() {
+  dummyArray = detailArray;
+  var node = document.getElementById("tdata");
+  node.querySelectorAll("*").forEach((n) => n.remove());
+  detailArray = [];
+  index = 0;
+  refreshe();
+}
+		
+		function refreshe() {
+  dummyArray.forEach((ele) => {
+    detailArray.push(ele);
+    getData();
+  });
+}
+	
+	
+	</script>
+</body>
+</html>
